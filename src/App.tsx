@@ -10,9 +10,23 @@ import { WhyChooseUs } from './pages/WhyChooseUs';
 import { Distributor } from './pages/Distributor';
 import { Contact } from './pages/Contact';
 
+function getRouterBasename() {
+  if (typeof window === 'undefined') return '/';
+
+  // On GitHub Pages project sites, use the repository segment as router basename.
+  if (window.location.hostname.endsWith('github.io')) {
+    const repoSegment = window.location.pathname.split('/').filter(Boolean)[0] || '';
+    return repoSegment ? `/${repoSegment}` : '/';
+  }
+
+  return '/';
+}
+
 function App() {
+  const routerBasename = getRouterBasename();
+
   return (
-    <Router basename={import.meta.env.BASE_URL}>
+    <Router basename={routerBasename}>
       <div className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-grow">
