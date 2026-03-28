@@ -61,6 +61,12 @@ export function Distributor() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!supabase) {
+      alert('Application submission is temporarily unavailable. Please contact us by phone or email.');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {

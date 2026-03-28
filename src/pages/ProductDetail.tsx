@@ -150,6 +150,12 @@ export function ProductDetail() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!supabase) {
+      alert('Inquiry submission is temporarily unavailable. Please contact us by phone or email.');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
